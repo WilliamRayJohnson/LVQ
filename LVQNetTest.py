@@ -7,7 +7,7 @@ import LVQNet
 
 class LVQNetTest(unittest.TestCase):
     def setUp(self):
-        self.net = LVQNet.LVQNet([[-1,-1],[1,1],[1,-1],[-1,1]], [1,1,2,2], 0.1)
+        self.net = LVQNet.LVQNet([[-1,-1],[1,1],[1,-1],[-1,1]], [[-1,-1],[1,1],[1,-1],[-1,1]], [1,1,2,2], [1,1,2,2], 0.1)
         
     def testCompete(self):
         self.net.layer1 = [[-1,-1],[1,1],[1,-1],[-1,1]]
@@ -21,6 +21,7 @@ class LVQNetTest(unittest.TestCase):
         
     def testIsCorrectlyCategorizedWithLetters(self):
         self.net.outputLayer = ['a', 'a', 'b', 'b']
+        self.net.inputCategories = ['a', 'a', 'b', 'b']
         self.assertTrue(self.net.isCorrectlyCategorized(1, 0))
         
     def testRecalcuateLayer1Weight(self):

@@ -6,14 +6,15 @@ import math
 import random
 
 class LVQNet():
-    def __init__(self, inputs, categories, learningRate):
+    def __init__(self, pValues, inputs, inputCategories, outputLayer, learningRate):
         self.inputs = inputs
-        self.outputLayer = categories
+        self.inputCategories = inputCategories
+        self.outputLayer = outputLayer
         self.learningRate = learningRate
         self.layer1 = []
-        for input in inputs:
+        for pValue in pValues:
             node = []
-            for value in input:
+            for value in pValue:
                 node.append(random.random())
             self.layer1.append(node)
         
@@ -35,7 +36,7 @@ class LVQNet():
         return math.sqrt(a**2 + b**2)
         
     def isCorrectlyCategorized(self, winnerIndex, pIndex):
-        return self.outputLayer[winnerIndex] == self.outputLayer[pIndex]
+        return self.outputLayer[winnerIndex] == self.inputCategories[pIndex]
         
     def recalculateLayer1Weight(self, movementDirection, input, winnerIndex):
         newWeight = []
