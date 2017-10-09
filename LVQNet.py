@@ -51,11 +51,11 @@ class LVQNet():
         while not thresholdMet:
             for pIndex in range(len(self.inputs)):
                 winnerIndex = self.compete(self.inputs[pIndex])
-                correctlyCategorized = isCorrectlyCategorized(winnerIndex, pIndex)
+                correctlyCategorized = self.isCorrectlyCategorized(winnerIndex, pIndex)
                 if correctlyCategorized:
-                    newWeight = recalculateLayer1Weight(1, self.inputs[pIndex], winnerIndex)
+                    newWeight = self.recalculateLayer1Weight(1, self.inputs[pIndex], winnerIndex)
                 else:
-                    newWeight = recalculateLayer1Weight(-1, self.inputs[pIndex], winnerIndex)
+                    newWeight = self.recalculateLayer1Weight(-1, self.inputs[pIndex], winnerIndex)
                 weightDistance = self.distanceFormula(self.layer1[winnerIndex], newWeight)
                 if weightDistance <= movementThreshold:
                     thresholdMet = True

@@ -19,6 +19,10 @@ class LVQNetTest(unittest.TestCase):
     def testIsCorrectlyCategorized(self):
         self.assertTrue(self.net.isCorrectlyCategorized(1, 0))
         
+    def testIsCorrectlyCategorizedWithLetters(self):
+        self.net.outputLayer = ['a', 'a', 'b', 'b']
+        self.assertTrue(self.net.isCorrectlyCategorized(1, 0))
+        
     def testRecalcuateLayer1Weight(self):
         newWeight = self.net.recalculateLayer1Weight(1, [-1,-1], 1)
         self.assertEqual(2, len(newWeight))
